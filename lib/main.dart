@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         body: Text('안녕'),
         bottomNavigationBar: BottomAppBar(
           child: SizedBox(
-            height: 70,
+            height: 60,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
