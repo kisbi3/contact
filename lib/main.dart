@@ -15,7 +15,21 @@ class MyApp extends StatelessWidget {
     // 실제 코딩은 이 아래부터 시작
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar( title: Text('앱임'),),
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          leading: SizedBox(
+            child: Text('금호동3가')
+          ),
+          title: Text(
+              '금호동3가',
+            style: TextStyle(
+              color: Colors.black,
+            ),
+          ),
+          actions: [
+            Icon(Icons.search, color: Colors.black), Icon(Icons.menu, color: Colors.black), Icon(Icons.star, color: Colors.black),
+          ],
+        ),
         body: Align(
           alignment: Alignment.topLeft,
           child: SizedBox(
@@ -66,8 +80,8 @@ class MyApp extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            Icon(Icons.favorite_border),
-                            Text('4'),
+                            Icon(Icons.favorite_border, color: Colors.grey,),
+                            Text('4', style: TextStyle(color: Colors.grey),),
                           ],
                         ),
                       ],
