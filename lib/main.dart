@@ -17,12 +17,67 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar( title: Text('앱임'),),
         body: Align(
-          alignment: Alignment.bottomCenter,
-          child: Container(
-            width: 50, height: 50, color: Colors.blue,
-            margin: EdgeInsets.all(20 ),
+          alignment: Alignment.topLeft,
+          child: SizedBox(
+            width: double.infinity,
+            child: Container(
+              padding: EdgeInsets.all(10),
+              child: (Row(
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Image.asset(
+                      'COVER1.jpg',
+                      width: 150,
+                      height: 150,
+                  ),
+                  Container(
+                    width: 330,
+                    padding: EdgeInsets.fromLTRB(10,0,50,0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Flexible(
+                            // child: Text('캐논 DSLR 100D (단렌즈, 충전기 16기가SD 포함)'),
+                              child: RichText(
+                            overflow: TextOverflow.clip,
+                            maxLines: 5,
+                            text: TextSpan(
+                              text: '캐논 DSLR 100D (단렌즈, 충전기 16기가SD 포함)',
+                              style: TextStyle(
+                                fontSize: 25,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.fromLTRB(0,5,0,5),
+                          child: Text('성동구 행담동 · 끌올 10분 전',
+                            style: TextStyle(
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ),
+                        Text('210,000원',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                        ),),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Icon(Icons.favorite_border),
+                            Text('4'),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              )),
+            ),
           ),
-        ),
+        )
       )
     );
   }
