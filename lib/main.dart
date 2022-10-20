@@ -10,12 +10,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'First app',
-      theme: ThemeData(
-        primarySwatch: Colors.blue
-      ),
-      // home: MyHomePage(),
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: MyHomePage(),
     );
   }
 }
 
+class MyHomePage extends StatelessWidget {
+  const MyHomePage({Key? key}) : super(key: key);
 
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
