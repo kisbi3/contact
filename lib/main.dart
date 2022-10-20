@@ -9,13 +9,25 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      // 앱을 통칭하는 이름(예를 들어 최근 앱 보기에 나타나는 이름)
       title: 'First app',
       theme: ThemeData(
         primarySwatch: Colors.blue
       ),
-      // home: MyHomePage(),
+      home: MyCard(),
     );
   }
 }
 
+class MyCard extends StatelessWidget {
+  const MyCard({Key? key}) : super(key: key);
 
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('BBANTO'),
+      ),
+    );
+  }
+}
