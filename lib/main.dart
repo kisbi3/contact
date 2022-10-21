@@ -2,25 +2,52 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
 
-//MyApp은 stateless Widget이므로, stl+tab 하고 이름에 MyApp 넣기!
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'First app',
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: MyHomePage(),
+      title: 'Appbar',
+      theme: ThemeData(
+        primarySwatch: Colors.red,
+      ),
+      home: MyPage(),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+
+class MyPage extends StatelessWidget {
+  const MyPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Appbar icon menu'),
+        centerTitle: true,
+        elevation: 0.0,
+        //leading : 아이콘 버튼이나 간단한 위젯을 왼족에 배치할
+        leading: IconButton(onPressed: (){
+          // Icon을 눌렀을 때 아래 함수가 실행됨.
+          print('menu button is clicked');
+          },
+          icon: Icon(Icons.menu)),
+        //actions : 복수의 아이콘 버튼 등을 오른쪽에 배치할 때
+        actions: [
+          IconButton(onPressed: (){
+            // Icon을 눌렀을 때 아래 함수가 실행됨.
+            print('shopping cart button is clicked');
+          },
+              icon: Icon(Icons.shopping_cart)),
+          IconButton(onPressed: (){
+            // Icon을 눌렀을 때 아래 함수가 실행됨.
+            print('search button is clicked');
+          },
+              icon: Icon(Icons.search)),
+        ],
+      ),
+    );
   }
 }
