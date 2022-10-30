@@ -31,14 +31,23 @@ class MyPage extends StatelessWidget {
       body: Center(
         // FlatButton 없음!!
         //ElevatedButton, Raised button, Floating action button : 기능상에서는 별 차이가 없음
+        // 중앙의 버튼을 누르면 SnackBar 출력!!
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.red,
           ),
           onPressed: (){
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text('New Snack Bar'),
-            ));
+              content: Text('New Snack Bar',
+              textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+              backgroundColor: Colors.teal,
+              duration: Duration(milliseconds: 1000),
+            ),
+            );
           },
           child: Text('show me',
             style: TextStyle(
