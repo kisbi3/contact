@@ -22,6 +22,7 @@ class MyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //flutter layout cheat sheet을 검색해보자!
     return Scaffold(
       backgroundColor: Colors.green,
       // SafeArea : 표현하려는 것이 화면 밖으로 나가는 것을 방지하는 역할.
