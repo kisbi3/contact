@@ -34,8 +34,10 @@ class FirstPage extends StatelessWidget {
               // 여기에서는 context가 FirstPage의 BuildContext 'context'를 불러옴
               //Navigator.push의 route 에 MaterialPageRoute를 불러옴
               Navigator.push(context, MaterialPageRoute(
-                  //MaterialPageRoute를 사용하면 자동으로 android에서 사용하는 animation 사용
-                  builder: (context) => SecondPage()));
+                  // builder는 일종의 '안전장치'!
+                  // builder: (context) => SecondPage()));
+                  // 위 코드에서 context는 flutter에서 자동으로 할당하므로 의미 없음! : '_'로 바꿀 수 있음
+                  builder: (_) => SecondPage()));
             },
             child: Text('Go to the Second page'),
         ),
@@ -52,15 +54,17 @@ class SecondPage extends StatelessWidget {
 
   @override
   // 단순히 혼동을 피하기위해 context -> ctx로 변경
-  Widget build(BuildContext ctx) {
+  Widget build(BuildContext context) {
     return Scaffold(
+      // appBar를 만드는 경우에는 뒤로가기 버튼을 자동으로 만들어줌!
+      // 그래서 사실 pop method가 필요 없기는 함.
       appBar: AppBar(
         title: Text("Second page"),
       ),
       body: Center(
         child: ElevatedButton(
           onPressed: (){
-            Navigator.pop(ctx);
+            Navigator.pop(context);
           },
           child: Text('Go to the First page'),
         ),
