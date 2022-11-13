@@ -1,30 +1,131 @@
-// 코딩셰프에서 DartPad에서 진행하므로, 여기에서도 그냥 DartPad처럼 진행할 것임.
-
-
-// String Interpolation
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 void main(){
-  String name = "Sean";
-  print(name);
-
-  // 변수 name 불러오기 : $name
-  print("Hi, $name, what's up?");
+  runApp(MyApp());
 }
 
-//Collection, Generic
-//Collection : 데이터들을 모아서 가지고 있는 자료구조
-//Generic : Collection이 가지고 있는 데이터들의 데이터 타입을 지정해서 코드의 안정성/재사용성을 높이는 기법.
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
 
-void collection(){
-  // list 만드는 법
-  // 변수 선언은 List로 하면 list로 고정, var로 하면 자동으로 list로 맞춰줌
-  //1. growable(동적 배열)
-  List number1 = new List.empty(growable: true);
-  //2. fixed length(정적 배열)
-  var number2 = [];
-
-  // <> : generic -> list안에 들어가는 타입을 지정해줌
-  List<String> number3 = new List.empty(growable: true);
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(
+        primarySwatch: Colors.blue
+      ),
+      home: MyPage(),
+    );
+  }
 }
 
+class MyPage extends StatelessWidget {
+  const MyPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Scaffold Messenger"),
+      ),
+      body: HomeBody(),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.thumb_up),
+        onPressed: (){
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text('Like a new Snack bar!'),
+            duration: Duration(seconds: 5),
+            action: SnackBarAction(label: 'Undo', onPressed: (){
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ThirdPage()),
+              );
+            }),
+          ));
+        },
+      ),
+    );
+  }
+}
+
+class HomeBody extends StatelessWidget {
+  const HomeBody({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: ElevatedButton(
+          onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> SecondPage()),);
+          },
+          child: Text('Go to the Second Page')
+      ),
+    );
+  }
+}
+
+class SecondPage extends StatelessWidget {
+  const SecondPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Second Page'),
+      ),
+      body: Center(
+        child: Text(
+            '"좋아요"가 추가 되었습니다.',
+                style: TextStyle(
+            fontSize: 20.0,
+            color: Colors.redAccent,
+        ),
+        ),
+      ),
+    );
+  }
+}
+
+// Snackbar가 다른 페이지로 갔을 때 바로 사라지게 하려면...
+// 개별적인 ScaffoldMessenger를 생성해야 함!
+//      => Scaffold를 ScaffoldMessenger로 감싸기고 Builder 함수를 이용해야 함.
+class ThirdPage extends StatelessWidget {
+  const ThirdPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ScaffoldMessenger(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Third Page'),
+        ),
+        body: Builder(
+          builder: (context) {
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    '"좋아요"를 취소 하시겠습니까?',
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      color: Colors.redAccent,
+                    ),
+                  ),
+                  ElevatedButton(
+                      onPressed: () {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text('"좋아요"가 취소되었습니다.'),
+                              duration: Duration(seconds: 3),
+                            )
+                        );
+                      },
+                      child: Text("취소하기"))
+                ],
+              ),
+              //    Center 위젯은 return된 위젯이므로 ; 붙여야 함.
+            );
+          }
+        ),
+      ),
+    );
+  }
+}
