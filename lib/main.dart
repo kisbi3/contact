@@ -139,6 +139,7 @@ class MyButtons extends StatelessWidget {
                   disabledBackgroundColor: Colors.pink,
               ),
             ),
+
           //  context 아래에서 오른쪽 끝에 두개의 버튼을 가로정렬 시켜주는 ButtonBar
           //  만약 가로 공간이 부족하다면 세로로 배치 해줌
             ButtonBar(
